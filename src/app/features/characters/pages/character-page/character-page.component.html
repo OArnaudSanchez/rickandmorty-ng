@@ -1,0 +1,42 @@
+<app-container title="Characters">
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mx-5">
+        @for(character of characters(); track character.id){
+            <div class="flex flex-col items-center bg-white border sm:max-w-fit border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <img class=" object-cover w-full rounded-lg h-full md:w-48" [src]="character.image" [alt]="character.name">
+                
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                    <a [routerLink]="['/character', character.id]">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white dark:hover:text-blue-400">{{ character.name | titlecase }}</h5>
+                    </a>
+   
+                    <character-status-badge [status]="character.status" [species]="character.species" />
+
+                    <div class="mt-2">
+                        <p class="text-gray-400">Gender</p>
+                        <span>{{ character.gender }}</span>
+                    </div>
+
+                    <div class="mt-2">
+                        <p class="text-gray-400">Last known location</p>
+                        <!-- TODO: Redirect to the detail of the location -->
+                        <a [routerLink]="['/location', character.location.url]">
+                            <span class="dark:hover:text-blue-400">{{ character.location.name }}</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-2">
+                        <a [routerLink]="['/character', character.id]"
+                            class="hover:text-blue-600 dark:hover:text-blue-400 transition-all">
+                            <span class="flex">
+                                More details
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" d="M21 3L3 21M21 3c-.676.676-1.923 1.11-3.039 1.379c-1.49.359-3.036.424-4.559.252c-1.182-.134-2.484-.4-3.009-.924M21 3c-.676.676-1.11 1.923-1.379 3.039c-.359 1.49-.424 3.036-.252 4.559c.134 1.182.4 2.484.924 3.009" stroke-width="1"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</app-container>

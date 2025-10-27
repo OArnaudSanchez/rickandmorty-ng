@@ -1,0 +1,13 @@
+<ul class="hidden sm:flex space-x-8">
+  @for(option of navigationOptions(); track option.path) {
+    <li>
+        <a
+            [routerLink]="option.path"
+            [routerLinkActive]="option.activeClass"
+            [routerLinkActiveOptions]="{ exact: option.isExactRoute ?? false }"
+            class="relative font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-all">
+        {{ option.title }}
+        </a>
+    </li>
+  }
+</ul>

@@ -1,0 +1,13 @@
+<section class="min-h-[calc(100vh-8rem)] flex flex-col mb-4">
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 flex justify-center my-4">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="text-gray-500">{{ subtitle() }}</p>
+    }
+    <hr class="mt-2 border-gray-300 dark:border-gray-700">
+  </header>
+
+  <main class="flex-1">
+    <ng-content></ng-content>
+  </main>
+</section>

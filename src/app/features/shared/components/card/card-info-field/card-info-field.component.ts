@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
 export class CardInfoFieldComponent {
 
   label = input.required<string>();
-  value = input.required<string | null>();
+  value = input.required<string | number | null>();
   link = input<string[]>();
+  cssClass = input<string>('mt-1');
+  hrefLink = input<string | null>();
 }

@@ -4,8 +4,8 @@ export const episodesRoute: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('../pages/episode-page/episode-page.component').then(
-        (c) => c.EpisodePageComponent
+      import('../pages/episodes-page/episodes-page.component').then(
+        (c) => c.EpisodesPageComponent
       ),
   },
   {

@@ -1,14 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { CardInfoFieldComponent } from "src/app/features/shared/components/card/card-info-field/card-info-field.component";
 import { ContainerComponent } from "src/app/features/shared/components/container/container.component";
-import { HideUrlPipe } from 'src/app/features/shared/pipes/hide-url.pipe';
+import { DetailContainerComponent } from "src/app/features/shared/components/container/detail-container/detail-container.component";
+import { RelatedItemsComponent } from "src/app/features/shared/components/related-items/related-items.component";
 import { Episode } from '../../models/episode.model';
 import { EpisodeService } from '../../services/episode.service';
 
 @Component({
   selector: 'app-episode-detail',
-  imports: [ContainerComponent, RouterLink, HideUrlPipe, DatePipe],
+  imports: [ContainerComponent, DatePipe, RelatedItemsComponent, DetailContainerComponent, CardInfoFieldComponent],
   templateUrl: './episode-detail.component.html',
   styleUrl: './episode-detail.component.css'
 })

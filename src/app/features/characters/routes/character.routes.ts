@@ -4,8 +4,8 @@ export const characterRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('../pages/character-page/character-page.component').then(
-        (c) => c.CharacterPageComponent
+      import('../pages/characters-page/characters-page.component').then(
+        (c) => c.CharactersPageComponent
       ),
   },
   {

@@ -4,8 +4,8 @@ export const locationRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('../pages/location-page/location-page.component').then(
-        (c) => c.LocationPageComponent
+      import('../pages/locations-page/locations-page.component').then(
+        (c) => c.LocationsPageComponent
       ),
   },
   {

@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center justify-center px-4 py-8 sm:py-12 lg:px-8">
+  <div class="w-full max-w-4xl bg-white border border-gray-200 rounded-2xl shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6">
+        @if(imageUrl()){
+            <img
+                [src]="imageUrl()"
+                [alt]="title()"
+                class="w-48 h-48 rounded-xl object-cover shadow-md border border-gray-300 dark:border-gray-700"/>
+        }
+
+        <div class="flex-1">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            {{ title() }}
+            </h1>
+            <ng-content select="[info]"></ng-content>
+        </div>
+    </div>
+    <ng-content select="[related]"></ng-content>
+   </div>
+</div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment.development';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/core/models/api-response.model';
 import { EpisodeMapper } from '../mappers/episode.mapper';
 import { EpisodeResponse } from '../models/episode-response.model';
@@ -21,19 +21,18 @@ export class EpisodeService {
   getEpisodes() {
     this.httpClient
       .get<ApiResponse<EpisodeResponse>>(`${environment.API_BASE_URL}/${environment.EPISODES_PATH}`)
-      .subscribe({
-        next: ({ results }) => {
-          const mappedEpisodes = EpisodeMapper.mapEpisodes(results);
-          this.episodes.set(mappedEpisodes);
-        },
-        // TODO: Handle API errors
-      });
+      .pipe(
+        map(({ results }) => EpisodeMapper.mapEpisodes(results)),
+        tap(episodes => this.episodes.set(episodes)),
+        catchError((error) => throwError(() => new Error(error)))
+      ).subscribe();
   }
 
   getEpisode(episodeId: string): Observable<Episode>{
     return this.httpClient.get<EpisodeResponse>(`${environment.API_BASE_URL}/${environment.EPISODES_PATH}/${episodeId}`)
     .pipe(
-      map(episode => EpisodeMapper.mapEpisode(episode))
+      map(episode => EpisodeMapper.mapEpisode(episode)),
+      catchError((error) => throwError(() => new Error(error)))
     );
   }
 }

@@ -1,14 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { CardInfoFieldComponent } from "src/app/features/shared/components/card/card-info-field/card-info-field.component";
 import { ContainerComponent } from "src/app/features/shared/components/container/container.component";
-import { HideUrlPipe } from 'src/app/features/shared/pipes/hide-url.pipe';
+import { DetailContainerComponent } from "src/app/features/shared/components/container/detail-container/detail-container.component";
+import { RelatedItemsComponent } from "src/app/features/shared/components/related-items/related-items.component";
 import { Location } from '../../models/location.model';
 import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-location-detail',
-  imports: [ContainerComponent, RouterLink, HideUrlPipe, DatePipe],
+  imports: [ContainerComponent, DatePipe, RelatedItemsComponent, DetailContainerComponent, CardInfoFieldComponent],
   templateUrl: './location-detail.component.html',
   styleUrl: './location-detail.component.css'
 })

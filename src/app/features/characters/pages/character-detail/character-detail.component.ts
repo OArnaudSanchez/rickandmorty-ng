@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { CardInfoFieldComponent } from "src/app/features/shared/components/card/card-info-field/card-info-field.component";
 import { ContainerComponent } from 'src/app/features/shared/components/container/container.component';
-import { HideUrlPipe } from 'src/app/features/shared/pipes/hide-url.pipe';
+import { DetailContainerComponent } from "src/app/features/shared/components/container/detail-container/detail-container.component";
+import { RelatedItemsComponent } from "src/app/features/shared/components/related-items/related-items.component";
 import { StatusBadgeComponent } from '../../components/status-badge/status-badge.component';
 import { Character } from '../../models/character.model';
 import { CharacterService } from '../../services/character.service';
@@ -12,10 +14,11 @@ import { CharacterService } from '../../services/character.service';
   imports: [
     ContainerComponent,
     StatusBadgeComponent,
-    HideUrlPipe,
-    RouterLink,
     DatePipe,
-  ],
+    RelatedItemsComponent,
+    DetailContainerComponent,
+    CardInfoFieldComponent
+],
   templateUrl: './character-detail.component.html',
   styleUrl: './character-detail.component.css',
 })

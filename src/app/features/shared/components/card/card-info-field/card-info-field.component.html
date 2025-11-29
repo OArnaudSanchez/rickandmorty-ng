@@ -1,11 +1,16 @@
-<div class="mt-2">
-  <p class="text-gray-400">{{ label() }}</p>
+<div [class]="cssClass()">
+  <p class="text-gray-400 font-semibold">{{ label() }}</p>
   
   @if (link()) {
-    <a [routerLink]="link()">
+    <a [routerLink]="link()" class="cursor-pointer">
         <span class="dark:hover:text-blue-400">{{ value() }}</span>
     </a>
   } 
+  @else if(hrefLink()){
+    <a [href]="hrefLink()" class="cursor-pointer" target="_blank">
+        <span class="dark:hover:text-blue-400">{{ value() }}</span>
+    </a>
+  }
   @else {
     <span>{{ value() }}</span>
   }

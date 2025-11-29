@@ -9,4 +9,6 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarLogoComponent {
 
+  protected imageUrl = "https://koradiproductions.com/wp-content/uploads/2021/06/rick-and-morty-silueta.jpg";
+
 }

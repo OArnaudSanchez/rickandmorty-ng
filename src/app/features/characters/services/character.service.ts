@@ -1,35 +1,37 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, signal } from "@angular/core";
-import { environment } from "@environments/environment.development";
-import { CharacterMapper } from "../mappers/character.mapper";
-import { ApiResponse } from "../models/character-response.model";
-import { Character } from "../models/character.model";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
+import { environment } from '@environments/environment.development';
+import { map, Observable } from 'rxjs';
+import { CharacterMapper } from '../mappers/character.mapper';
+import { ApiResponse, CharacterResponse } from '../models/character-response.model';
+import { Character } from '../models/character.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-export class CharacterService{
+export class CharacterService {
+  private readonly httpClient = inject(HttpClient);
+  characters = signal<Character[] | null>(null);
 
-    private readonly httpClient = inject(HttpClient);
-    private readonly apiUrl = environment.API_BASE_URL;
+  constructor() {
+    this.getCharacters();
+  }
 
-    characters = signal<Character[] | null>(null);
+  getCharacters() {
+    this.httpClient
+      .get<ApiResponse>(`${environment.API_BASE_URL}/${environment.CHARACTERS_PATH}`)
+      .subscribe({
+        next: ({ results }) => {
+          const mappedCharacters = CharacterMapper.mapCharacters(results);
+          this.characters.set(mappedCharacters);
+        },
+      });
+  }
 
-    constructor(){
-        this.getCharacters();
-    }
-
-    getCharacters(){
-        this.httpClient.get<ApiResponse>(`${this.apiUrl}/character`)
-            .subscribe({
-                next: ({ results }) => {
-                    const mappedCharacters = CharacterMapper.mapCharacters(results);
-                    console.log(mappedCharacters);
-                    this.characters.set(mappedCharacters);
-                }
-            });
-    }
-
-
-
+  getCharacter(characterId: string): Observable<Character>{
+    return this.httpClient.get<CharacterResponse>(`${environment.API_BASE_URL}/${environment.CHARACTERS_PATH}/${characterId}`)
+    .pipe(
+      map((character) => CharacterMapper.mapCharacter(character)),
+    );
+  }
 }

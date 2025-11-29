@@ -4,12 +4,12 @@ import { Character } from '../../models/character.model';
 import { StatusBadgeComponent } from '../status-badge/status-badge.component';
 
 @Component({
-  selector: 'character-detail',
+  selector: 'character-primary-info',
   imports: [StatusBadgeComponent, TitleCasePipe],
-  templateUrl: './character-detail.component.html',
-  styleUrl: './character-detail.component.css'
+  templateUrl: './character-primary-info.component.html',
+  styleUrl: './character-primary-info.component.css'
 })
-export class CharacterDetailComponent {
+export class CharacterPrimaryInfoComponent {
 
   character = input.required<Character>();
 }

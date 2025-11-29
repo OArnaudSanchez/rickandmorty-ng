@@ -1,5 +1,4 @@
 <section class="flex items-center justify-center min-h-[calc(100vh-8rem)]">
-    <!-- TODO: separate these components -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl">
         @for(option of navigationOptions; track option.path) {
             <div class="group p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-sm hover:-translate-y-1 transition-all duration-300">
@@ -11,8 +10,7 @@
                         {{ option.description ?? 'Learn more about this section of the app.' }}
                     </p>
                 </a>
-    
-                <!-- TODO: Create a primary button component -->
+
                 <a [routerLink]="option.path" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition">
                     Read more
                     <svg

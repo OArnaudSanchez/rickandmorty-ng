@@ -19,4 +19,5 @@ export interface Character{
     image: string;
     episodes: string[],
     url: string;
+    created: string;
 }

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NavigationModel } from '../../../services/navbar.service';
+import { NavigationModel } from '../../../models/navigation.model';
 
 @Component({
   selector: 'app-navbar-navigation-options',
@@ -10,6 +10,6 @@ import { NavigationModel } from '../../../services/navbar.service';
 })
 export class NavbarNavigationOptionsComponent {
 
-  navigationOptions = input<NavigationModel[]>();
+  navigationOptions = input.required<NavigationModel[]>();
 
 }

@@ -1,14 +1,12 @@
+import { PaginationResponse } from "src/app/core/models/pagination.model"
+
 export interface ApiResponse {
   info: PaginationResponse
   results: CharacterResponse[]
 }
 
-export interface PaginationResponse {
-  count: number
-  pages: number
-  next: string
-  prev: string
-}
+//TODO: refactor these interfaces to avoid code duplication
+
 
 export interface CharacterResponse {
   id: number

@@ -10,5 +10,5 @@ import { NavbarService } from '../../services/navbar.service';
 })
 export class HomePageComponent {
   private readonly navbarService = inject(NavbarService);
-  navigationOptions = this.navbarService.navigationOptions.filter(option => option.path !== '/');
+  protected navigationOptions = this.navbarService.navigationOptions.filter(option => option.path !== '/');
 }

@@ -1,0 +1,12 @@
+<div class="mt-2">
+  <p class="text-gray-400">{{ label() }}</p>
+  
+  @if (link()) {
+    <a [routerLink]="link()">
+        <span class="dark:hover:text-blue-400">{{ value() }}</span>
+    </a>
+  } 
+  @else {
+    <span>{{ value() }}</span>
+  }
+</div>

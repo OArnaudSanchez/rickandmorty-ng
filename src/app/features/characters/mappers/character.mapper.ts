@@ -1,8 +1,8 @@
 import { CharacterResponse } from '../models/character-response.model';
 import {
-    Character,
-    CharacterGender,
-    CharacterStatus,
+  Character,
+  CharacterGender,
+  CharacterStatus,
 } from '../models/character.model';
 
 export class CharacterMapper {
@@ -32,6 +32,7 @@ export class CharacterMapper {
       image,
       episode,
       url,
+      created
     } = character;
     return {
       id: id,
@@ -45,6 +46,7 @@ export class CharacterMapper {
       image: image,
       episodes: episode, 
       url: url,
+      created: created
     };
   }
 

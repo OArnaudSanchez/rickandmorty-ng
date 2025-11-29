@@ -6,4 +6,5 @@ export interface Episode{
     episode: string;
     characters: string[];
     url: string;
+    created: string;
 }

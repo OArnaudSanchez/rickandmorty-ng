@@ -1,27 +1,17 @@
 <app-container title="Episodes">
-    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mx-5">
-        <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-cover w-full rounded-t-lg h-full md:h-auto md:w-48" src="https://rickandmortyapi.com/api/character/avatar/276.jpeg" alt="">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Harold</h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-            </div>
-        </a>
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-5">
+        @for(episode of episodes(); track episode.id;){
+            <app-card
+                [id]="episode.id"
+                [title]="episode.name"
+                routePath="/episodes">
 
-        <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="https://rickandmortyapi.com/api/character/avatar/276.jpeg" alt="">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-            </div>
-        </a>
+                <app-card-info-field label="Air Date" [value]="episode.airDate | date : 'yyyy-MM-dd'" />
 
-        <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="https://rickandmortyapi.com/api/character/avatar/276.jpeg" alt="">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-            </div>
-        </a>
+                <app-card-info-field label="Episode" [value]="episode.episode" />
+    
+                <more-details path="episodes" [id]="episode.id"/>
+            </app-card>
+        }
     </div>
 </app-container>

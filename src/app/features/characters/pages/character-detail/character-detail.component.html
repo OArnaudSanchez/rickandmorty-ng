@@ -1,0 +1,80 @@
+@let localCharacter = character();
+
+@if(localCharacter && localCharacter !== undefined){
+  <app-container title="Character Detail">
+   <div class="flex flex-col items-center justify-center px-4 py-8 sm:py-12 lg:px-8">
+      <!-- TODO: Refactor and separate components -->
+      <div
+        class="w-full max-w-4xl bg-white border border-gray-200 rounded-2xl shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+        <!-- Header -->
+        <div
+          class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6">
+          <!-- Character Image -->
+          <img
+            [src]="localCharacter.image"
+            [alt]="localCharacter.name"
+            class="w-48 h-48 rounded-xl object-cover shadow-md border border-gray-300 dark:border-gray-700"
+          />
+  
+          <!-- Character Info -->
+          <div class="flex-1">
+            <h1
+              class="text-3xl font-bold text-gray-900 dark:text-white mb-2"
+            >
+              {{ localCharacter.name }}
+            </h1>
+  
+            <!-- Status Badge -->
+            <character-status-badge
+              [status]="localCharacter.status"
+              [species]="localCharacter.species"
+            />
+  
+            <p class="mt-4 text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">Gender:</span>
+              {{ localCharacter.gender }}
+            </p>
+  
+            <p class="mt-1 text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">Origin:</span>
+              {{ localCharacter.origin.name }}
+            </p>
+  
+            <p class="mt-1 text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">Location:</span>
+              {{ localCharacter.location.name }}
+            </p>
+  
+            <p class="mt-1 text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">Episodes:</span>
+              {{ episodesLength }}
+            </p>
+
+            <p class="mt-1 text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">Created at:</span>
+              {{ localCharacter.created | date }}
+            </p>
+          </div>
+        </div>
+  
+        <hr class="border-gray-200 dark:border-gray-700" />       
+        
+        <!-- TODO: Refactor and create reusable components -->
+        @if(episodesLength > 0){
+          <div class="p-6">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Appears In
+            </h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              @for (episode of localCharacter.episodes; track episode) {
+                <li class="p-2 text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    <a [routerLink]="[episode | hideurl]">{{ episode | hideurl }}</a> 
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </app-container>
+}

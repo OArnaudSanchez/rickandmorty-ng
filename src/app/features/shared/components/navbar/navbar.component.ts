@@ -12,6 +12,6 @@ import { NavbarNavigationOptionsComponent } from "./navbar-navigation-options/na
 export class NavbarComponent {
 
   private readonly navbarService = inject(NavbarService);
-  navigationOptions = this.navbarService.navigationOptions;
+  protected navigationOptions = this.navbarService.navigationOptions;
 
 }

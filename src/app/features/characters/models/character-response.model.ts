@@ -1,13 +1,3 @@
-import { PaginationResponse } from "src/app/core/models/pagination.model"
-
-export interface ApiResponse {
-  info: PaginationResponse
-  results: CharacterResponse[]
-}
-
-//TODO: refactor these interfaces to avoid code duplication
-
-
 export interface CharacterResponse {
   id: number
   name: string

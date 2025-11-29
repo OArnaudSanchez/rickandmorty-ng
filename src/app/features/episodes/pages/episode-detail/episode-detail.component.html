@@ -3,7 +3,6 @@
 @if(localEpisode && localEpisode !== undefined){
   <app-container title="Episode Detail">
    <div class="flex flex-col items-center justify-center px-4 py-8 sm:py-12 lg:px-8">
-      <!-- TODO: Refactor and separate components -->
       <div
         class="w-full max-w-4xl bg-white border border-gray-200 rounded-2xl shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
         <div
@@ -27,13 +26,12 @@
   
             <p class="mt-1 text-gray-700 dark:text-gray-300">
               <span class="font-semibold">Url: </span>
-              <!-- Add svg or icon -->
+              <!-- TODO: Add svg or icon -->
               <a [href]="localEpisode.url" target="_blank">{{ localEpisode.name }}</a>
             </p>
   
             <p class="mt-1 text-gray-700 dark:text-gray-300">
-                <!-- TODO: Add this field in each detail page -->
-              <span class="font-semibold">Creation Date:</span>
+              <span class="font-semibold">Created at:</span>
               {{ localEpisode.created | date}}
             </p>
           </div>
@@ -49,7 +47,6 @@
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
               @for (character of localEpisode.characters; track character) {
                 <li class="p-2 text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                  <!-- TODO: Create a pipe or an attribute directive to transform the url to hide the https://rickandmortyapi.com/api and show only the text episode/EpisodeNumber -->
                     <a [routerLink]="[character | hideurl]">{{ character | hideurl }}</a> 
                 </li>
               }

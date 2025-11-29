@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment.development';
 import { map, Observable } from 'rxjs';
+import { ApiResponse } from 'src/app/core/models/api-response.model';
 import { EpisodeMapper } from '../mappers/episode.mapper';
-import { ApiResponse, EpisodeResponse } from '../models/episode-response.model';
+import { EpisodeResponse } from '../models/episode-response.model';
 import { Episode } from '../models/episode.model';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class EpisodeService {
 
   getEpisodes() {
     this.httpClient
-      .get<ApiResponse>(`${environment.API_BASE_URL}/${environment.EPISODES_PATH}`)
+      .get<ApiResponse<EpisodeResponse>>(`${environment.API_BASE_URL}/${environment.EPISODES_PATH}`)
       .subscribe({
         next: ({ results }) => {
           const mappedEpisodes = EpisodeMapper.mapEpisodes(results);

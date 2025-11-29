@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment.development';
 import { map, Observable } from 'rxjs';
+import { ApiResponse } from 'src/app/core/models/api-response.model';
 import { LocationMapper } from '../mappers/location.mapper';
-import { ApiResponse, LocationResponse } from '../models/location-response.model';
+import { LocationResponse } from '../models/location-response.model';
 import { Location } from '../models/location.model';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class LocationService {
 
   getLocations() {
     this.httpClient
-      .get<ApiResponse>(`${environment.API_BASE_URL}/${environment.LOCATIONS_PATH}`)
+      .get<ApiResponse<LocationResponse>>(`${environment.API_BASE_URL}/${environment.LOCATIONS_PATH}`)
       .subscribe({
         next: ({ results }) => {
           const mappedLocations = LocationMapper.mapLocations(results);

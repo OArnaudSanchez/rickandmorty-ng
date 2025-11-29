@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment.development';
 import { map, Observable } from 'rxjs';
+import { ApiResponse } from 'src/app/core/models/api-response.model';
 import { CharacterMapper } from '../mappers/character.mapper';
-import { ApiResponse, CharacterResponse } from '../models/character-response.model';
+import { CharacterResponse } from '../models/character-response.model';
 import { Character } from '../models/character.model';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class CharacterService {
 
   getCharacters() {
     this.httpClient
-      .get<ApiResponse>(`${environment.API_BASE_URL}/${environment.CHARACTERS_PATH}`)
+      .get<ApiResponse<CharacterResponse>>(`${environment.API_BASE_URL}/${environment.CHARACTERS_PATH}`)
       .subscribe({
         next: ({ results }) => {
           const mappedCharacters = CharacterMapper.mapCharacters(results);
